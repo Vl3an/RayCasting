@@ -16,7 +16,7 @@ class Ray:
         self.y1 = y1
         self.x2 = x2
         self.y2 = y2
-        pygame.draw.line(window, red, [x1,y1],[x2,y2])
+        pygame.draw.aaline(window, red, [x1,y1],[x2,y2])
 
 
     def cast(self):
@@ -45,7 +45,7 @@ class Ray:
                     newPt = ((self.x2-self.x1) * t + self.x1, (y4-y3)*u + y3)
                     if abs(newPt[0] - self.x1) < abs(pt[0]- self.x1):
                         pt = newPt
-        pygame.draw.line(window,red,(self.x1,self.y1),pt)
+        pygame.draw.aaline(window,red,(self.x1,self.y1),pt)
 
 class Wall:
     walls = []
@@ -55,13 +55,13 @@ class Wall:
                 [width,0,width,height]]
     def __init__(self,x1,y1,x2,y2):
         #graph
-        pygame.draw.line(window, white, [x1,y1],[x2,y2])
+        pygame.draw.aaline(window, white, [x1,y1],[x2,y2])
         #calc
         Wall.walls.append([x1,y1,x2,y2])
     
     def draw():
         for wall in Wall.walls:
-            pygame.draw.line(window, white, (wall[0],wall[1]), (wall[2], wall[3]))
+            pygame.draw.aaline(window, white, (wall[0],wall[1]), (wall[2], wall[3]))
 
     def create_walls(N):
         for i in range(N):
